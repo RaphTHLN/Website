@@ -1,0 +1,24 @@
+:root {
+  --ffffff: rgba(255, 255, 255, 1);
+  --bleu: rgba(76, 47, 180, 1);
+  --gray: rgba(240, 240, 240, 1);
+  --dark: rgba(30, 30, 33, 1);
+  --darkgray: rgba(72, 72, 74, 1);
+  --border-radius-sm: 12px;
+  --border-radius-md: 30px;
+  --border-radius-lg: 50px;
+  --spacing-xs: 10px;
+  --spacing-sm: 20px;
+  --spacing-md: 40px;
+  --spacing-lg: 60px;
+  --spacing-xl: 120px;
+  --container-padding: clamp(20px, 5vw, 140px);
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 15px;
+  --font-size-lg: 24px;
+  --font-size-xl: 32px;
+  --font-size-xxl: 40px;
+  --font-size-xxxl: 56px;
+  --font-size-title: 64px;
+}

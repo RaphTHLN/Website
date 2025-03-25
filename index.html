@@ -1,22 +1,178 @@
 <!DOCTYPE html>
-<!-- oh, hello developers trying to look at my crappy code :D -->
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site en construction</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <h1>Oups 😞 !</h1>
-        <p>Mon site n’est pas encore prêt</p>
-        <p>Revenez me voir bientôt 🙃</p>
+<!-- Coucou les gens qui regardent mon code 👀 -->
+<!-- J'ai beau être graphiste, je suis pas bon en code, donc soyez indulgent 😕 -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Raphaël Thieulen - Graphiste</title>
+  </head>
+  <body>
+    <div class="website">
+      <header class="header">
+        <img class="logo" src="img/logo.png" alt="Logo RaphTHLN" />
+        <nav class="navigation-links">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="#" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="#about" class="nav-link">Qui suis-je?</a></li>
+            <li class="nav-item"><a href="#projects" class="nav-link">Mes Projets</a></li>
+          </ul>
+        </nav>
+        <a href="mailto:raphthln@proton.me" class="cta-button">Me contacter</a>
+      </header>
+      
+      <section class="main">
+        <div class="main-content">
+          <div class="introduction">
+            <div class="greeting-phrase">Bonjour 👋🏻 !</div>
+            <div class="your-info">
+              <div class="greeting-phrase-2">Je suis</div>
+              <h1 class="name">Raph <br />THLN</h1>
+              <div class="role">Graphiste</div>
+            </div>
+            <div class="call-to-action">
+              <a href="#about" class="cta-button">Qui suis-je?</a>
+              <a href="#projects" class="cta-button">Découvrir mes créations ⬇️</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="about" class="presentation">
+        <h2 class="section-title">Petite présentation en photo</h2>
+        <div class="bento">
+          <div class="overlap">
+            <div class="photo-navale">
+              <div class="tag"><p class="name-2">Parc de la Navale, La Seyne sur Mer</p></div>
+            </div>
+            <img class="maps-box" src="img/mapsbox.png" alt="Carte localisation" />
+          </div>
+          <div class="box-intert">
+            <div class="content">
+              <h3 class="name-title">Centres d'intérêt</h3>
+              <div class="tag-container">
+                <span class="tag-light">Graphisme</span>
+                <span class="tag-light">Création Musicale</span>
+                <span class="tag">Photographie</span>
+                <span class="tag">Intelligence Artificielle</span>
+                <span class="tag">Développement</span>
+                <span class="tag">Administration Système</span>
+                <span class="tag">Design Ui/Ux</span>
+                <span class="tag">Community Management</span>
+              </div>
+            </div>
+          </div>
+          <div class="box-presentation">
+            <h3 class="name-title">Qui suis-je? 🤔</h3>
+            <p class="description">
+              Je suis Raphaël, graphiste depuis quelques mois.<br />J'aime toucher à tout ce qui est créatif comme le
+              design d'interface web ou encore la création de communautés en ligne, la création musicale et la
+              photographie.
+            </p>
+          </div>
+          <div class="image-section">
+            <div class="overlap-group">
+              <div class="tag-3"><p class="name-2">Plage de Bonnegrâce, Six-Fours Les Plages</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="projects" class="portfolio">
+        <h2 class="section-title">Mes Projets 📝</h2>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-background staar-bg">
+              <div class="project-content">
+                <div class="tags">
+                  <span class="tag">Communauté</span>
+                  <span class="tag">Création de Contenu</span>
+                  <span class="tag">Twitch</span>
+                </div>
+                <h3 class="project-title">StaaRCord</h3>
+                <p class="project-description">Serveur discord partner à plus de 1500 membres</p>
+              </div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-background nono-bg">
+              <div class="project-content">
+                <div class="tags">
+                  <span class="tag">Création de contenu</span>
+                  <span class="tag">Twitch</span>
+                  <span class="tag">Tiktok</span>
+                </div>
+                <h3 class="project-title">NonoMKD</h3>
+                <p class="project-description">Direction artistique d'un streamer sur Twitch</p>
+              </div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-background ethereal-bg">
+              <div class="project-content">
+                <div class="tags">
+                  <span class="tag">Serveur Minecraft</span>
+                  <span class="tag">Tiktok</span>
+                </div>
+                <h3 class="project-title">EtherealMC</h3>
+                <p class="project-description">Mon premier projet en tant que Designer &amp; Graphiste.</p>
+              </div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-background btc-bg">
+              <div class="project-content">
+                <div class="tags">
+                  <span class="tag">Communauté</span>
+                  <span class="tag">Développement</span>
+                </div>
+                <h3 class="project-title">./breakthecode</h3>
+                <p class="project-description">Serveur discord communautaire rassemblant<br />des développeurs de France</p>
+              </div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-background host-bg">
+              <div class="project-content">
+                <div class="tags">
+                  <span class="tag">Concept</span>
+                </div>
+                <h3 class="project-title">Hébergeur Web</h3>
+                <p class="project-description">Concept de site web pour un hébergeur web.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      
+      <section class="cta-section">
+        <div class="cta-container">
+          <h2 class="cta-title">Ensemble, réalisons votre projet.</h2>
+          <a href="mailto:raphthln@proton.me" class="cta-button">Me contacter</a>
+        </div>
+      </section>
+      
+      <footer class="footer">
+        <div class="brand-info">
+          <img class="footer-logo" src="img/name.svg" alt="Raphaël Thieulen" />
+          <div class="frame"><div class="footer-text">Fait avec ❤️</div></div>
+        </div>
+        <div class="links">
+          <div class="footer-nav">
+            <a href="#" class="footer-link">Accueil</a>
+            <a href="#about" class="footer-link">Qui suis-je?</a>
+            <a href="#projects" class="footer-link">Mes projets</a>
+            <a href="mailto:raphthln@proton.me" class="footer-link">Me Contacter</a>
+          </div>
+          <div class="social-links">
+            <a href="https://discord.gg/breakthecode" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a>
+            <a href="https://github.com/RaphTHLN" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+          </div>
+        </div>
+      </footer>
     </div>
-    <div class="buttons">
-        <a href="https://discord.com/invite/breakthecode" class="button">Discord</a>
-        <a href="https://bento.me/aelth" class="button">Bento</a>
-    </div>
-</body>
+  </body>
 </html>
