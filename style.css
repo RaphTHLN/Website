@@ -35,12 +35,6 @@ body {
     text-align: center;
 }
 
-.site-header h1 {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: var(--text-color-primary);
-}
-
 .bento-grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
