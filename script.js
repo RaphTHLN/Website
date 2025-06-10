@@ -11,8 +11,8 @@ window.addEventListener('mousemove', (e) => {
 });
 
 function animateCursor() {
-    cursorX += (mouseX - cursorX) * 0.08;
-    cursorY += (mouseY - cursorY) * 0.08;
+    cursorX += (mouseX - cursorX) * 0.15;
+    cursorY += (mouseY - cursorY) * 0.15;
 
     customCursor.style.left = `${cursorX}px`;
     customCursor.style.top = `${cursorY}px`;
@@ -26,132 +26,143 @@ const canvas = document.getElementById('background-canvas');
 const ctx = canvas.getContext('2d');
 
 let blobs = [];
-let stars = []; 
-let shootingStars = []; 
-let blobsInitialized = false; 
-let starsInitialized = false; 
+let stars = [];
+let shootingStars = [];
 
-const SHOOTING_STAR_MIN_DELAY = 10000; 
-const SHOOTING_STAR_MAX_DELAY = 30000; 
+const SHOOTING_STAR_MIN_DELAY = 10000;
+const SHOOTING_STAR_MAX_DELAY = 30000;
 let lastShootingStarTime = 0;
 let nextShootingStarDelay = 0;
 
+const random = (min, max) => Math.random() * (max - min) + min;
+
 function resizeCanvas() {
+    const oldWidth = canvas.width;
+    const oldHeight = canvas.height;
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
-    if (!blobsInitialized) {
+
+    if (blobs.length === 0) {
         createBlobs();
-        blobsInitialized = true;
-    } 
-    
-    if (!starsInitialized) {
+    } else {
+        blobs.forEach(blob => {
+            blob.x = (blob.x / oldWidth) * canvas.width;
+            blob.y = (blob.y / oldHeight) * canvas.height;
+        });
+    }
+
+    if (stars.length === 0) {
         createStars();
-        starsInitialized = true;
+    } else {
+        stars.forEach(star => {
+            star.x = (star.x / oldWidth) * canvas.width;
+            star.y = (star.y / oldHeight) * canvas.height;
+        });
     }
 }
 
 function createBlobs() {
-    blobs = []; 
-    const numBlobs = Math.min(4, Math.floor(canvas.width / 250) + 2); 
+    blobs = [];
+    const numBlobs = Math.min(5, Math.floor(canvas.width / 300) + 1);
 
-    const gridX = 3; 
-    const gridY = 2; 
+    const gridX = 3;
+    const gridY = 2;
     const cellWidth = canvas.width / gridX;
     const cellHeight = canvas.height / gridY;
 
     for (let i = 0; i < numBlobs; i++) {
         const cellIndexX = i % gridX;
-        const cellIndexY = Math.floor(i / gridX) % gridY; 
+        const cellIndexY = Math.floor(i / gridX) % gridY;
 
-        const minX = cellIndexX * cellWidth + cellWidth * 0.1; 
+        const minX = cellIndexX * cellWidth + cellWidth * 0.1;
         const maxX = (cellIndexX + 1) * cellWidth - cellWidth * 0.1;
         const minY = cellIndexY * cellHeight + cellHeight * 0.1;
         const maxY = (cellIndexY + 1) * cellHeight - cellHeight * 0.1;
 
-        const xPos = Math.random() * (maxX - minX) + minX;
-        const yPos = Math.random() * (maxY - minY) + minY;
+        const xPos = random(minX, maxX);
+        const yPos = random(minY, maxY);
 
-        const hue = Math.random() * 60 + 200; 
-        const saturation = Math.random() * 20 + 80; 
-        const lightness = Math.random() * 10 + 55; 
+        const hue = random(200, 260);
+        const saturation = random(80, 100);
+        const lightness = random(55, 65);
 
         blobs.push({
-            x: xPos, 
-            y: yPos, 
-            radius: Math.random() * 250 + 200, 
-            color: `hsl(${hue}, ${saturation}%, ${lightness}%)`, 
-            speedX: (Math.random() - 0.5) * 0.7, 
-            speedY: (Math.random() - 0.5) * 0.7,
-            opacity: Math.random() * 0.4 + 0.4, 
-            blur: Math.random() * 60 + 60 
+            x: xPos,
+            y: yPos,
+            radius: random(200, 450),
+            color: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
+            speedX: random(-0.5, 0.5),
+            speedY: random(-0.5, 0.5),
+            opacity: random(0.4, 0.8),
+            blur: random(60, 100)
         });
     }
 }
 
 function createStars() {
     stars = [];
-    const numStars = Math.floor(canvas.width / 15); 
+    const numStars = Math.floor(canvas.width / 20);
 
     for (let i = 0; i < numStars; i++) {
         stars.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 1 + 0.5, 
-            alpha: Math.random(), 
-            speed: Math.random() * 0.05 + 0.01 
+            x: random(0, canvas.width),
+            y: random(0, canvas.height),
+            radius: random(0.5, 1.5),
+            alpha: random(0.2, 1),
+            speed: random(0.01, 0.05)
         });
     }
 }
 
 function createShootingStar() {
-    const startX = Math.random() * canvas.width;
-    const startY = -50; 
-    const endX = Math.random() * canvas.width;
-    const endY = canvas.height + 50;
+    const startX = random(0, canvas.width);
+    const startY = -50;
 
-    const length = Math.random() * 150 + 100; 
-    const speed = Math.random() * 4 + 4; 
+    const length = random(100, 200);
+    const speed = random(5, 10);
+    const angle = random(Math.PI / 4 - Math.PI / 16, Math.PI / 4 + Math.PI / 8);
 
     shootingStars.push({
         x: startX,
         y: startY,
         length: length,
         speed: speed,
-        alpha: 1, 
-        hue: Math.random() * 30 + 200, 
-        saturation: Math.random() * 20 + 80,
-        lightness: Math.random() * 10 + 80, 
-        angle: Math.PI / 4 + (Math.random() * Math.PI / 8 - Math.PI / 16) 
+        alpha: 1,
+        hue: random(200, 230),
+        saturation: random(80, 100),
+        lightness: random(80, 95),
+        angle: angle
     });
 }
 
 function drawShootingStars() {
     for (let i = shootingStars.length - 1; i >= 0; i--) {
         const star = shootingStars[i];
+
         star.x += star.speed * Math.cos(star.angle);
         star.y += star.speed * Math.sin(star.angle);
-        star.alpha -= 0.01; 
-        if (star.alpha <= 0 || star.x > canvas.width + star.length || star.y > canvas.height + star.length) {
+
+        star.alpha -= 0.015;
+
+        if (star.alpha <= 0 || star.x > canvas.width + star.length || star.y > canvas.height + star.length || star.y < -star.length) {
             shootingStars.splice(i, 1);
-            continue; 
+            continue;
         }
+
         ctx.save();
         ctx.beginPath();
 
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(star.x - star.length * Math.cos(star.angle), star.y - star.length * Math.sin(star.angle));
-        
         const gradient = ctx.createLinearGradient(
             star.x - star.length * Math.cos(star.angle), star.y - star.length * Math.sin(star.angle),
             star.x, star.y
         );
-        gradient.addColorStop(0, `rgba(255, 255, 255, 0)`); 
-        gradient.addColorStop(0.5, `hsla(${star.hue}, ${star.saturation}%, ${star.lightness}%, ${star.alpha * 0.8})`); 
-        gradient.addColorStop(1, `hsla(${star.hue}, ${star.saturation}%, ${star.lightness}%, ${star.alpha})`); 
+        gradient.addColorStop(0, `rgba(255, 255, 255, 0)`);
+        gradient.addColorStop(0.5, `hsla(${star.hue}, ${star.saturation}%, ${star.lightness}%, ${star.alpha * 0.8})`);
+        gradient.addColorStop(1, `hsla(${star.hue}, ${star.saturation}%, ${star.lightness}%, ${star.alpha})`);
 
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = Math.random() * 2 + 1; 
+        ctx.lineWidth = random(1, 3);
         ctx.stroke();
 
         ctx.beginPath();
@@ -163,31 +174,34 @@ function drawShootingStars() {
     }
 }
 
-
-function drawStars() { 
+function drawStars() {
     stars.forEach(star => {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`; 
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
         ctx.fill();
 
         star.alpha += star.speed;
         if (star.alpha > 1 || star.alpha < 0) {
-            star.speed *= -1; 
+            star.speed *= -1;
         }
     });
 }
-function animateBackground(currentTime) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
-    
+function animateBackground(currentTime) {
+    if (!ctx) {
+        requestAnimationFrame(animateBackground);
+        return;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     if (currentTime - lastShootingStarTime > nextShootingStarDelay) {
         createShootingStar();
         lastShootingStarTime = currentTime;
-        nextShootingStarDelay = Math.random() * (SHOOTING_STAR_MAX_DELAY - SHOOTING_STAR_MIN_DELAY) + SHOOTING_STAR_MIN_DELAY;
+        nextShootingStarDelay = random(SHOOTING_STAR_MIN_DELAY, SHOOTING_STAR_MAX_DELAY);
     }
 
-    
     blobs.forEach(blob => {
         ctx.save();
         ctx.filter = `blur(${blob.blur}px)`;
@@ -209,17 +223,35 @@ function animateBackground(currentTime) {
         }
     });
 
-    
     drawStars();
 
-    
     drawShootingStars();
 
     requestAnimationFrame(animateBackground);
 }
 
-window.addEventListener('resize', resizeCanvas);
+document.addEventListener('DOMContentLoaded', () => {
+    const canvasElement = document.getElementById('background-canvas');
+    if (canvasElement) {
+        resizeCanvas();
+        animateBackground(0);
+    } else {
+        console.error("Canvas element 'background-canvas' not found!");
+    }
+});
 
+window.addEventListener('resize', () => {
+    const oldWidth = canvas.width;
+    const oldHeight = canvas.height;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-resizeCanvas(); 
-animateBackground(0); 
+    blobs.forEach(blob => {
+        blob.x = (blob.x / oldWidth) * canvas.width;
+        blob.y = (blob.y / oldHeight) * canvas.height;
+    });
+    stars.forEach(star => {
+        star.x = (star.x / oldWidth) * canvas.width;
+        star.y = (star.y / oldHeight) * canvas.height;
+    });
+});
