@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RaphTHLN.ovh - Portfolio Bento</title> <link rel="stylesheet" href="style.css">
+    <title>RaphTHLN.ovh - Portfolio Bento</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <main class="bento-grid-container">
+    <canvas id="background-canvas"></canvas> <div id="custom-cursor"></div> <main class="bento-grid-container">
 
         <div class="bento-block block-about">
             <span class="tag tag-green">À propos</span>
             <p class="main-text">
-                <strong>Bonjour 👋</strong>
+                <strong>Bienvenue dans mon portfolio !👋</strong>
             </p>
             <p class="main-text">
                 Moi c'est Raphaël, lycéen de 16 ans, mais aussi <strong>graphiste freelance</strong> et <strong>créateur de musique</strong>.
@@ -22,7 +23,7 @@
 
         <div class="bento-block block-avatar">
             <div class="avatar-content">
-                <img src="img/avatar.png" alt="Ton Avatar" class="avatar-img">
+                <img src="img/avatar.png" alt="UserPicture" class="avatar-img">
                 <p class="avatar-text">Coucou 😉</p>
             </div>
         </div>
@@ -88,10 +89,28 @@
             </a>
         </div>
 
-                <div class="bento-block block-small-link">
+        <div class="bento-block block-small-link">
             <a href="https://www.behance.net/raphthln" target="_blank" class="small-link-content">
                 <i class="fab fa-behance icon-medium"></i>
                 <p>Behance</p>
+            </a>
+        </div>
+        <div class="bento-block block-small-link">
+            <a href="https://www.discord.gg/BreakTheCode" target="_blank" class="small-link-content">
+                <i class="fab fa-discord icon-medium"></i>
+                <p>Discord</p>
+            </a>
+        </div>
+        <div class="bento-block block-small-link">
+            <a href="https://www.tiktok.com/@raphthln" target="_blank" class="small-link-content">
+                <i class="fab fa-tiktok icon-medium"></i>
+                <p>Tiktok</p>
+            </a>
+        </div>
+        <div class="bento-block block-small-link">
+            <a href="https://www.figma.com/@aelth" target="_blank" class="small-link-content">
+                <i class="fab fa-figma icon-medium"></i>
+                <p>Figma</p>
             </a>
         </div>
         
@@ -101,5 +120,5 @@
         <p>Fait avec <i class="fas fa-heart" style="color: #ff00bb;"></i> par Raphaël</p>
     </footer>
 
-</body>
+    <script src="script.js"></script> </body>
 </html>
